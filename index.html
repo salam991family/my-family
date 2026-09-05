@@ -21,42 +21,42 @@
 <body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen dark:bg-slate-900 dark:text-slate-100 transition-colors duration-200">
 
   <!-- Settings & Language Bar -->
-  <div class="settings-container p-4 bg-white dark:bg-slate-800 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+  <div class="settings-container p-4 bg-white dark:bg-slate-800 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center transition-colors">
     <div class="lang-selector flex items-center space-x-2 space-x-reverse">
-      <label for="languageSelect" class="text-xs font-semibold" data-i18n="lang_label">🌐 زبان / Language:</label>
-      <select id="languageSelect" onchange="changeLanguage(this.value)" class="border border-slate-200 dark:border-slate-600 dark:bg-slate-700 rounded-lg p-1 text-xs">
+      <label for="languageSelect" class="text-xs font-semibold dark:text-slate-200" data-i18n="lang_label">🌐 زبان / Language:</label>
+      <select id="languageSelect" onchange="changeLanguage(this.value)" class="border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg p-1 text-xs">
         <option value="ur" selected>اردو</option>
         <option value="en">English</option>
       </select>
     </div>
 
     <div class="settings-dropdown relative">
-      <button type="button" class="settings-btn bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 px-3 py-1.5 rounded-lg text-xs font-bold" onclick="toggleSettingsMenu()" data-i18n="settings">⚙️ سیٹنگز</button>
-      <div id="settingsMenu" class="settings-menu hidden absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl shadow-lg z-50">
-        <a href="#" onclick="openProfileModal(); return false;" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-700" data-i18n="edit_profile">👤 ایڈیٹ پروفائل</a>
-        <a href="#" onclick="toggleDarkMode(); return false;" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-700" data-i18n="dark_mode">🌙 ڈارک موڈ</a>
-        <a href="#" onclick="openDonateModal(); return false;" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-700" data-i18n="donate">💰 عطیہ / ڈونیشن</a>
+      <button type="button" class="settings-btn bg-slate-100 dark:bg-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors" onclick="toggleSettingsMenu()" data-i18n="settings">⚙️ سیٹنگز</button>
+      <div id="settingsMenu" class="settings-menu hidden absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 dark:text-slate-100 border border-slate-100 dark:border-slate-700 rounded-xl shadow-lg z-50">
+        <a href="#" onclick="openProfileModal(); return false;" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-700 dark:text-slate-200" data-i18n="edit_profile">👤 ایڈیٹ پروفائل</a>
+        <a href="#" onclick="toggleDarkMode(); return false;" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-700 dark:text-slate-200" data-i18n="dark_mode">🌙 ڈارک موڈ</a>
+        <a href="#" onclick="openDonateModal(); return false;" class="block px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-700 dark:text-slate-200" data-i18n="donate">💰 عطیہ / ڈونیشن</a>
       </div>
     </div>
   </div>
 
   <!-- AUTH SCREEN -->
   <div id="login-screen" class="min-h-screen flex items-center justify-center p-4">
-    <div class="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-8 border border-slate-100 dark:border-slate-700">
+    <div class="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-8 border border-slate-100 dark:border-slate-700 transition-colors">
       <div class="text-center mb-6">
-        <h1 class="text-2xl font-bold" data-i18n="portal_title">اسماعیلی فیملی فاؤنڈیشن</h1>
+        <h1 class="text-2xl font-bold dark:text-white" data-i18n="portal_title">اسماعیلی فیملی فاؤنڈیشن</h1>
         <p class="text-sm text-slate-500 dark:text-slate-400 mt-1" id="auth-subtitle" data-i18n="auth_subtitle">محفوظ فیملی پورٹل میں لاگ ان کریں</p>
       </div>
 
       <!-- LOGIN FORM -->
       <form id="login-form" class="space-y-4">
         <div>
-          <label class="block text-xs font-semibold mb-1" data-i18n="username_lbl">یوزر نیم</label>
-          <input type="text" id="login-username" required class="w-full px-4 py-3 rounded-xl border dark:bg-slate-700 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm" placeholder="admin" data-i18n-ph="ph_username">
+          <label class="block text-xs font-semibold mb-1 dark:text-slate-200" data-i18n="username_lbl">یوزر نیم</label>
+          <input type="text" id="login-username" required class="w-full px-4 py-3 rounded-xl border dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm" placeholder="admin" data-i18n-ph="ph_username">
         </div>
         <div>
-          <label class="block text-xs font-semibold mb-1" data-i18n="password_lbl">پاس ورڈ</label>
-          <input type="password" id="login-password" required class="w-full px-4 py-3 rounded-xl border dark:bg-slate-700 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm">
+          <label class="block text-xs font-semibold mb-1 dark:text-slate-200" data-i18n="password_lbl">پاس ورڈ</label>
+          <input type="password" id="login-password" required class="w-full px-4 py-3 rounded-xl border dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm">
         </div>
         <button type="submit" class="w-full py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-all shadow-md" data-i18n="login_btn">
           لاگ ان کریں
@@ -66,24 +66,24 @@
       <!-- REGISTER FORM -->
       <form id="register-form" class="space-y-3 hidden">
         <div>
-          <label class="block text-xs font-semibold mb-1" data-i18n="fullname_lbl">پورا نام</label>
-          <input type="text" id="reg-fullname" required class="w-full px-3 py-2 rounded-xl border dark:bg-slate-700 dark:border-slate-600 focus:outline-none text-xs">
+          <label class="block text-xs font-semibold mb-1 dark:text-slate-200" data-i18n="fullname_lbl">پورا نام</label>
+          <input type="text" id="reg-fullname" required class="w-full px-3 py-2 rounded-xl border dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:outline-none text-xs">
         </div>
         <div>
-          <label class="block text-xs font-semibold mb-1" data-i18n="username_lbl">یوزر نیم</label>
-          <input type="text" id="reg-username" required class="w-full px-3 py-2 rounded-xl border dark:bg-slate-700 dark:border-slate-600 focus:outline-none text-xs">
+          <label class="block text-xs font-semibold mb-1 dark:text-slate-200" data-i18n="username_lbl">یوزر نیم</label>
+          <input type="text" id="reg-username" required class="w-full px-3 py-2 rounded-xl border dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:outline-none text-xs">
         </div>
         <div>
-          <label class="block text-xs font-semibold mb-1" data-i18n="password_lbl">پاس ورڈ</label>
-          <input type="password" id="reg-password" required class="w-full px-3 py-2 rounded-xl border dark:bg-slate-700 dark:border-slate-600 focus:outline-none text-xs">
+          <label class="block text-xs font-semibold mb-1 dark:text-slate-200" data-i18n="password_lbl">پاس ورڈ</label>
+          <input type="password" id="reg-password" required class="w-full px-3 py-2 rounded-xl border dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:outline-none text-xs">
         </div>
         <div>
-          <label class="block text-xs font-semibold mb-1" data-i18n="phone_lbl">موبائل نمبر</label>
-          <input type="text" id="reg-phone" required class="w-full px-3 py-2 rounded-xl border dark:bg-slate-700 dark:border-slate-600 focus:outline-none text-xs">
+          <label class="block text-xs font-semibold mb-1 dark:text-slate-200" data-i18n="phone_lbl">موبائل نمبر</label>
+          <input type="text" id="reg-phone" required class="w-full px-3 py-2 rounded-xl border dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:outline-none text-xs">
         </div>
         <div>
-          <label class="block text-xs font-semibold mb-1" data-i18n="membership_lbl">ممبرشپ قسم</label>
-          <select id="reg-type" class="w-full px-3 py-2 rounded-xl border dark:bg-slate-700 dark:border-slate-600 focus:outline-none text-xs">
+          <label class="block text-xs font-semibold mb-1 dark:text-slate-200" data-i18n="membership_lbl">ممبرشپ قسم</label>
+          <select id="reg-type" class="w-full px-3 py-2 rounded-xl border dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:outline-none text-xs">
             <option value="عام ممبر">عام ممبر (General Member)</option>
             <option value="خاص / کمیونٹی ممبر">خاص / کمیونٹی ممبر (Community Member)</option>
           </select>
@@ -95,7 +95,7 @@
 
       <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700 text-center">
         <p class="text-xs text-slate-500 dark:text-slate-400" id="auth-switch-text" data-i18n="switch_text">نیا اکاؤنٹ بنانا چاہتے ہیں؟</p>
-        <button id="toggle-auth-btn" class="mt-1 text-xs font-bold text-primary-600 hover:underline" data-i18n="toggle_auth_btn">
+        <button id="toggle-auth-btn" class="mt-1 text-xs font-bold text-primary-600 dark:text-primary-400 hover:underline" data-i18n="toggle_auth_btn">
           نیا اکاؤنٹ رجسٹر کریں (Sign Up)
         </button>
       </div>
@@ -105,25 +105,25 @@
   <!-- MAIN APP SCREEN -->
   <div id="app" class="hidden min-h-screen flex flex-col md:flex-row">
     <!-- Sidebar -->
-    <aside id="sidebar" class="w-full md:w-64 bg-white dark:bg-slate-800 border-l border-slate-200 dark:border-slate-700 flex-shrink-0">
+    <aside id="sidebar" class="w-full md:w-64 bg-white dark:bg-slate-800 border-l border-slate-200 dark:border-slate-700 flex-shrink-0 transition-colors">
       <div class="p-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
         <div>
-          <h2 class="font-bold text-lg" data-i18n="portal_title">فیملی پورٹل</h2>
+          <h2 class="font-bold text-lg dark:text-white" data-i18n="portal_title">فیملی پورٹل</h2>
           <span id="role-badge" class="mt-1 inline-block" data-i18n="admin">ایڈمن</span>
         </div>
       </div>
       <nav class="p-4 space-y-2">
-        <a href="#dashboard" class="nav-link block px-4 py-3 rounded-xl text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700" data-i18n="dashboard">ڈیش بورڈ</a>
-        <a href="#accounts" class="nav-link block px-4 py-3 rounded-xl text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700" data-i18n="foundation_accounts">🏦 فاؤنڈیشن اکاؤنٹس</a>
-        <a href="#transfer" class="nav-link block px-4 py-3 rounded-xl text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700" data-i18n="fund_transfer">💸 فنڈز ٹرانسفر</a>
-        <a href="#members" class="nav-link block px-4 py-3 rounded-xl text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 relative">
+        <a href="#dashboard" class="nav-link block px-4 py-3 rounded-xl text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200" data-i18n="dashboard">ڈیش بورڈ</a>
+        <a href="#accounts" class="nav-link block px-4 py-3 rounded-xl text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200" data-i18n="foundation_accounts">🏦 فاؤنڈیشن اکاؤنٹس</a>
+        <a href="#transfer" class="nav-link block px-4 py-3 rounded-xl text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200" data-i18n="fund_transfer">💸 فنڈز ٹرانسفر</a>
+        <a href="#members" class="nav-link block px-4 py-3 rounded-xl text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200 relative">
           <span data-i18n="family_members">فیملی ممبرز</span>
           <span id="pending-members-count" class="hidden absolute left-3 top-3 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full"></span>
         </a>
-        <a href="#tree" class="nav-link block px-4 py-3 rounded-xl text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700" data-i18n="family_tree">🌳 شجرہ نسب</a>
+        <a href="#tree" class="nav-link block px-4 py-3 rounded-xl text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200" data-i18n="family_tree">🌳 شجرہ نسب</a>
       </nav>
       <div class="p-4 border-t border-slate-100 dark:border-slate-700 mt-auto">
-        <button id="logout-btn" class="w-full text-right px-4 py-2 text-xs font-semibold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" data-i18n="logout">لاگ آؤٹ</button>
+        <button id="logout-btn" class="w-full text-right px-4 py-2 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" data-i18n="logout">لاگ آؤٹ</button>
       </div>
     </aside>
 
@@ -131,15 +131,15 @@
     <main class="flex-1 p-6 md:p-10">
       <!-- DASHBOARD PAGE -->
       <section id="page-dashboard" class="page space-y-6">
-        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 transition-colors">
           <div class="border-b dark:border-slate-700 pb-4 mb-4">
             <h1 class="text-2xl font-bold text-emerald-600 dark:text-emerald-400" data-i18n="dash_header">🏛️ اسماعیلی فیملی فاؤنڈیشن</h1>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="dash_desc">فاؤنڈیشن کے فنڈز، ممبرز اور شجرہ نسب کا محفوظ اور منظم پورٹل</p>
           </div>
 
           <div class="space-y-4 mb-6">
-            <h2 class="text-sm font-bold" data-i18n="feat_title">🌟 اہم خصوصیات:</h2>
-            <ul class="space-y-2 text-xs leading-relaxed">
+            <h2 class="text-sm font-bold dark:text-slate-200" data-i18n="feat_title">🌟 اہم خصوصیات:</h2>
+            <ul class="space-y-2 text-xs leading-relaxed dark:text-slate-300">
               <li class="flex items-start gap-2"><span>💰</span><div data-i18n="feat_1"><b>فنڈز کا حساب:</b> شفاف مالیاتی حساب کتاب بذریعہ ایزی پیسہ، جیز کیش اور بینک اکاؤنٹس۔</div></li>
               <li class="flex items-start gap-2"><span>👥</span><div data-i18n="feat_2"><b>فیملی ممبرز ڈائریکٹری:</b> تمام اراکین کا بنیادی ریکارڈ اور رابطہ معلومات۔</div></li>
               <li class="flex items-start gap-2"><span>🌳</span><div data-i18n="feat_3"><b>شجرہ نسب:</b> خاندانی تاریخ اور بزرگوں کا مکمل شجرہ نسب۔</div></li>
@@ -148,13 +148,13 @@
           </div>
 
           <div class="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200/60 dark:border-slate-700/60">
-            <h3 class="text-xs font-bold mb-2" data-i18n="demo_login_title">🔐 آزمائشی لاگ ان کی تفصیلات:</h3>
+            <h3 class="text-xs font-bold mb-2 dark:text-slate-200" data-i18n="demo_login_title">🔐 آزمائشی لاگ ان کی تفصیلات:</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-              <div class="p-2 bg-white dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700">
+              <div class="p-2 bg-white dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700 dark:text-slate-200">
                 <span class="block text-slate-400 text-[10px]" data-i18n="admin_label">ایڈمن (Admin)</span>
                 <b>User:</b> <code>admin</code> | <b>Pass:</b> <code>password</code>
               </div>
-              <div class="p-2 bg-white dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700">
+              <div class="p-2 bg-white dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700 dark:text-slate-200">
                 <span class="block text-slate-400 text-[10px]" data-i18n="user_label">عام ممبر (User)</span>
                 <b>User:</b> <code>user</code> | <b>Pass:</b> <code>password</code>
               </div>
@@ -168,44 +168,44 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+          <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm transition-colors">
             <p class="text-xs text-slate-400" data-i18n="rec_fund_label">موصول فنڈ</p>
             <p id="total-received" class="text-lg font-bold text-emerald-600 dark:text-emerald-400 mt-1">Rs 0</p>
           </div>
-          <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+          <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm transition-colors">
             <p class="text-xs text-slate-400" data-i18n="pen_fund_label">پینڈنگ فنڈ</p>
             <p id="total-pending" class="text-lg font-bold text-amber-500 mt-1">Rs 0</p>
           </div>
-          <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+          <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm transition-colors">
             <p class="text-xs text-slate-400" data-i18n="spent_fund_label">خرچ فنڈ</p>
             <p id="total-spent" class="text-lg font-bold text-red-500 mt-1">Rs 0</p>
           </div>
-          <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+          <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm transition-colors">
             <p class="text-xs text-slate-400" data-i18n="total_mem_label">کل ممبرز</p>
-            <p id="members-count" class="text-lg font-bold mt-1">0</p>
+            <p id="members-count" class="text-lg font-bold mt-1 dark:text-white">0</p>
           </div>
         </div>
 
-        <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
-          <div class="p-4 border-b border-slate-100 dark:border-slate-700 font-bold text-sm" data-i18n="history_label">ہسٹری فنڈز</div>
+        <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden transition-colors">
+          <div class="p-4 border-b border-slate-100 dark:border-slate-700 font-bold text-sm dark:text-white" data-i18n="history_label">ہسٹری فنڈز</div>
           <div id="recent-tx-list"></div>
         </div>
       </section>
 
       <!-- ACCOUNTS PAGE -->
       <section id="page-accounts" class="page hidden space-y-6">
-        <h3 class="text-xl font-bold" data-i18n="foundation_accounts">فاؤنڈیشن بینک اور موبائل والٹ اکاؤنٹس</h3>
-        <div id="admin-add-account-card" class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm space-y-3">
-          <h4 class="font-bold text-sm" data-i18n="add_acc_heading">نیا اکاؤنٹ شامل کریں (صرف ایڈمن)</h4>
+        <h3 class="text-xl font-bold dark:text-white" data-i18n="foundation_accounts">فاؤنڈیشن بینک اور موبائل والٹ اکاؤنٹس</h3>
+        <div id="admin-add-account-card" class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm space-y-3 transition-colors">
+          <h4 class="font-bold text-sm dark:text-white" data-i18n="add_acc_heading">نیا اکاؤنٹ شامل کریں (صرف ایڈمن)</h4>
           <form onsubmit="event.preventDefault(); window.app.addAccount(this.type.value, this.name.value, this.accNumber.value, this.accTitle.value); this.reset();" class="grid grid-cols-1 md:grid-cols-4 gap-3">
-            <select name="type" class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs">
+            <select name="type" class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs">
               <option value="Easypaisa">Easypaisa</option>
               <option value="JazzCash">JazzCash</option>
               <option value="Bank">Bank Account</option>
             </select>
-            <input type="text" name="name" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_bank_name">
-            <input type="text" name="accNumber" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_acc_num">
-            <input type="text" name="accTitle" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_acc_title">
+            <input type="text" name="name" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_bank_name">
+            <input type="text" name="accNumber" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_acc_num">
+            <input type="text" name="accTitle" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_acc_title">
             <button type="submit" class="col-span-1 md:col-span-4 bg-primary-600 text-white text-xs py-2 rounded-xl font-bold hover:bg-primary-700" data-i18n="add_acc_btn">اکاؤنٹ شامل کریں</button>
           </form>
         </div>
@@ -214,19 +214,19 @@
 
       <!-- TRANSFER FUNDS PAGE -->
       <section id="page-transfer" class="page hidden space-y-6">
-        <h3 class="text-xl font-bold" data-i18n="fund_transfer">فنڈز ٹرانسفر (رقم جمع کروائیں)</h3>
-        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm space-y-4">
-          <h4 class="font-bold text-sm" data-i18n="send_req_heading">رقم بھیجنے کی درخواست جمع کریں</h4>
+        <h3 class="text-xl font-bold dark:text-white" data-i18n="fund_transfer">فنڈز ٹرانسفر (رقم جمع کروائیں)</h3>
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm space-y-4 transition-colors">
+          <h4 class="font-bold text-sm dark:text-white" data-i18n="send_req_heading">رقم بھیجنے کی درخواست جمع کریں</h4>
           <form onsubmit="event.preventDefault(); window.app.addTransaction(this.member.value, this.amount.value, 'income', 'pending', this.date.value, this.paymentMethod.value, this.trxId.value); this.reset();" class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <input type="text" name="member" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_your_name">
-            <input type="number" name="amount" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_amount">
-            <select name="paymentMethod" class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs">
+            <input type="text" name="member" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_your_name">
+            <input type="number" name="amount" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_amount">
+            <select name="paymentMethod" class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs">
               <option value="Easypaisa">Easypaisa</option>
               <option value="JazzCash">JazzCash</option>
               <option value="Bank Transfer">Bank Transfer</option>
             </select>
-            <input type="text" name="trxId" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_trx_id">
-            <input type="date" name="date" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs md:col-span-2">
+            <input type="text" name="trxId" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_trx_id">
+            <input type="date" name="date" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs md:col-span-2">
             <button type="submit" class="md:col-span-2 bg-primary-600 text-white text-xs py-2 rounded-xl font-bold hover:bg-primary-700" data-i18n="send_transfer_btn">ٹرانسفر کی درخواست بھیجیں</button>
           </form>
         </div>
@@ -234,13 +234,13 @@
 
       <!-- MEMBERS PAGE -->
       <section id="page-members" class="page hidden space-y-6">
-        <h3 class="text-xl font-bold" data-i18n="family_members">فیملی ممبرز</h3>
-        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
-          <h4 class="font-bold text-sm mb-3" data-i18n="add_mem_heading">نیا ممبر شامل کریں</h4>
+        <h3 class="text-xl font-bold dark:text-white" data-i18n="family_members">فیملی ممبرز</h3>
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm transition-colors">
+          <h4 class="font-bold text-sm mb-3 dark:text-white" data-i18n="add_mem_heading">نیا ممبر شامل کریں</h4>
           <form onsubmit="event.preventDefault(); window.app.addMember(this.name.value, this.role.value, this.phone.value, 'pending'); this.reset();" class="grid grid-cols-1 md:grid-cols-4 gap-3">
-            <input type="text" name="name" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_name">
-            <input type="text" name="role" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_role">
-            <input type="text" name="phone" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_phone">
+            <input type="text" name="name" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_name">
+            <input type="text" name="role" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_role">
+            <input type="text" name="phone" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_phone">
             <button type="submit" class="bg-primary-600 text-white text-xs py-2 rounded-xl font-bold hover:bg-primary-700" data-i18n="add_btn">اضافہ کریں</button>
           </form>
         </div>
@@ -249,13 +249,13 @@
 
       <!-- FAMILY TREE PAGE -->
       <section id="page-tree" class="page hidden space-y-6">
-        <h3 class="text-xl font-bold" data-i18n="family_tree">شجرہ نسب</h3>
-        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
-          <h4 class="font-bold text-sm mb-3" data-i18n="add_tree_heading">نیا شجرہ نسب شامل کریں</h4>
+        <h3 class="text-xl font-bold dark:text-white" data-i18n="family_tree">شجرہ نسب</h3>
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm transition-colors">
+          <h4 class="font-bold text-sm mb-3 dark:text-white" data-i18n="add_tree_heading">نیا شجرہ نسب شامل کریں</h4>
           <form onsubmit="event.preventDefault(); window.app.addFamilyTree(this.familyName.value, this.headName.value, this.treeDetails.value); this.reset();" class="grid grid-cols-1 gap-3">
-            <input type="text" name="familyName" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_family_name">
-            <input type="text" name="headName" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_head_name">
-            <textarea name="treeDetails" rows="4" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 rounded-xl text-xs" data-i18n-ph="ph_tree_details"></textarea>
+            <input type="text" name="familyName" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_family_name">
+            <input type="text" name="headName" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_head_name">
+            <textarea name="treeDetails" rows="4" required class="px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs" data-i18n-ph="ph_tree_details"></textarea>
             <button type="submit" class="bg-primary-600 text-white text-xs py-2 rounded-xl font-bold hover:bg-primary-700" data-i18n="save_tree_btn">شجرہ محفوظ کریں</button>
           </form>
         </div>
@@ -266,19 +266,19 @@
 
   <!-- PROFILE EDIT MODAL -->
   <div id="profileModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-sm w-full space-y-4 border dark:border-slate-700">
-      <h3 class="font-bold text-base" data-i18n="edit_profile">ایڈیٹ پروفائل</h3>
+    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-sm w-full space-y-4 border dark:border-slate-700 transition-colors">
+      <h3 class="font-bold text-base dark:text-white" data-i18n="edit_profile">ایڈیٹ پروفائل</h3>
       <form onsubmit="saveProfileSettings(event)" class="space-y-3">
         <div>
-          <label class="block text-xs mb-1" data-i18n="username_lbl">یوزر نیم</label>
-          <input type="text" id="profUsername" class="w-full px-3 py-2 border dark:bg-slate-700 rounded-xl text-xs">
+          <label class="block text-xs mb-1 dark:text-slate-200" data-i18n="username_lbl">یوزر نیم</label>
+          <input type="text" id="profUsername" class="w-full px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs">
         </div>
         <div>
-          <label class="block text-xs mb-1" data-i18n="password_lbl">پاس ورڈ</label>
-          <input type="password" id="profPassword" class="w-full px-3 py-2 border dark:bg-slate-700 rounded-xl text-xs">
+          <label class="block text-xs mb-1 dark:text-slate-200" data-i18n="password_lbl">پاس ورڈ</label>
+          <input type="password" id="profPassword" class="w-full px-3 py-2 border dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-xl text-xs">
         </div>
         <div class="flex justify-end gap-2 pt-2">
-          <button type="button" onclick="closeProfileModal()" class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-xs rounded-xl" data-i18n="cancel">منسوخ</button>
+          <button type="button" onclick="closeProfileModal()" class="px-4 py-2 bg-slate-100 dark:bg-slate-700 dark:text-slate-200 text-xs rounded-xl" data-i18n="cancel">منسوخ</button>
           <button type="submit" class="px-4 py-2 bg-primary-600 text-white text-xs rounded-xl font-bold" data-i18n="save">محفوظ کریں</button>
         </div>
       </form>
@@ -287,10 +287,10 @@
 
   <!-- DONATION MODAL -->
   <div id="donationModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-sm w-full space-y-4 border dark:border-slate-700 text-center">
-      <h3 class="font-bold text-base" data-i18n="donate">عطیہ / ڈونیشن</h3>
+    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-sm w-full space-y-4 border dark:border-slate-700 text-center transition-colors">
+      <h3 class="font-bold text-base dark:text-white" data-i18n="donate">عطیہ / ڈونیشن</h3>
       <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="donate_modal_desc">فاؤنڈیشن کے فنڈ میں ڈائریکٹ رقم جمع کرنے کے لیے درج ذیل نمبر پر ایزی پیسہ یا جیز کیش کریں:</p>
-      <div class="bg-slate-50 dark:bg-slate-700 p-3 rounded-xl text-xs font-mono font-bold select-all">03426965892</div>
+      <div class="bg-slate-50 dark:bg-slate-700 dark:text-slate-100 p-3 rounded-xl text-xs font-mono font-bold select-all">03426965892</div>
       <button onclick="closeDonateModal()" class="w-full py-2 bg-primary-600 text-white text-xs rounded-xl font-bold" data-i18n="close">بند کریں</button>
     </div>
   </div>
