@@ -116,6 +116,7 @@ function t(key) {
 }
 
 function applyTranslations() {
+  // Update text elements and placeholders
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
@@ -124,29 +125,40 @@ function applyTranslations() {
       el.textContent = t(key);
     }
   });
+
   // Update select options that have data-i18n
   document.querySelectorAll('option[data-i18n]').forEach(el => {
     el.textContent = t(el.getAttribute('data-i18n'));
   });
-  document.documentElement.lang = currentLang === 'ur' ? 'ur' : 'en';
+
+  // Handle Page Direction (RTL / LTR)
+  const isUrdu = currentLang === 'ur';
+  document.documentElement.lang = isUrdu ? 'ur' : 'en';
+  document.documentElement.dir = isUrdu ? 'rtl' : 'ltr';
+
+  // Toggle Language Buttons Styling
+  const enBtn = document.getElementById('lang-en');
+  const urBtn = document.getElementById('lang-ur');
+  if (enBtn && urBtn) {
+    if (isUrdu) {
+      urBtn.className = 'px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800 shadow-sm';
+      enBtn.className = 'px-3 py-1 rounded-full text-sm font-medium text-slate-500 hover:bg-slate-100';
+    } else {
+      enBtn.className = 'px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800 shadow-sm';
+      urBtn.className = 'px-3 py-1 rounded-full text-sm font-medium text-slate-500 hover:bg-slate-100';
+    }
+  }
 }
 
 function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('iff_lang', lang);
   applyTranslations();
-  // Highlight buttons
-  const enBtn = document.getElementById('lang-en');
-  const urBtn = document.getElementById('lang-ur');
-  if (enBtn && urBtn) {
-    if (lang === 'en') {
-      enBtn.className = 'px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800';
-      urBtn.className = 'px-3 py-1 rounded-full text-sm font-medium text-slate-500 hover:bg-slate-100';
-    } else {
-      urBtn.className = 'px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800';
-      enBtn.className = 'px-3 py-1 rounded-full text-sm font-medium text-slate-500 hover:bg-slate-100';
-    }
-  }
 }
+
+// Auto-run translations when page loads
+document.addEventListener('DOMContentLoaded', () => {
+  applyTranslations();
+});
 
 window.IFF_i18n = { t, setLang, applyTranslations, getLang: () => currentLang };
