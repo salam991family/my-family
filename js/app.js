@@ -1,3 +1,4 @@
+// DEFAULT DATA STRUCTURE
 const DEFAULT_DATA = {
   fundBalance: 0,
   totalReceived: 0,
@@ -8,12 +9,12 @@ const DEFAULT_DATA = {
     { username: 'admin', password: 'password', fullname: 'ایڈمن', role: 'ایڈمن', status: 'approved' },
     { username: 'user', password: 'password', fullname: 'عام ممبر', role: 'عام ممبر', status: 'approved' }
   ],
-  transactions: [],
-  familyTrees: [],
   accounts: [
     { id: 1, type: 'Easypaisa', name: 'Easypaisa Mobile', accNumber: '03426965892', accTitle: 'Ismaili Foundation' },
     { id: 2, type: 'JazzCash', name: 'JazzCash Mobile', accNumber: '03426965892', accTitle: 'Ismaili Foundation' }
-  ]
+  ],
+  transactions: [],
+  familyTrees: []
 };
 
 class AppState {
@@ -141,7 +142,6 @@ class AppState {
   }
 
   openWalletApp(type, accNumber) {
-    // Copy number to clipboard
     navigator.clipboard.writeText(accNumber);
 
     if (type === 'Easypaisa') {
@@ -201,17 +201,17 @@ class AppState {
     const toggleBtn = document.getElementById('toggle-auth-btn');
 
     if (this.isRegistering) {
-      loginForm.classList.add('hidden');
-      regForm.classList.remove('hidden');
-      title.textContent = 'نیا اکاؤنٹ بنائیں (Registration)';
-      switchText.textContent = 'پہلے سے اکاؤنٹ موجود ہے؟';
-      toggleBtn.textContent = 'لاگ ان کریں (Sign In)';
+      if (loginForm) loginForm.classList.add('hidden');
+      if (regForm) regForm.classList.remove('hidden');
+      if (title) title.textContent = 'نیا اکاؤنٹ بنائیں (Registration)';
+      if (switchText) switchText.textContent = 'پہلے سے اکاؤنٹ موجود ہے؟';
+      if (toggleBtn) toggleBtn.textContent = 'لاگ ان کریں (Sign In)';
     } else {
-      loginForm.classList.remove('hidden');
-      regForm.classList.add('hidden');
-      title.textContent = 'محفوظ فیملی پورٹل میں لاگ ان کریں';
-      switchText.textContent = 'نیا اکاؤنٹ بنانا چاہتے ہیں؟';
-      toggleBtn.textContent = 'نیا اکاؤنٹ رجسٹر کریں (Sign Up)';
+      if (loginForm) loginForm.classList.remove('hidden');
+      if (regForm) regForm.classList.add('hidden');
+      if (title) title.textContent = 'محفوظ فیملی پورٹل میں لاگ ان کریں';
+      if (switchText) switchText.textContent = 'نیا اکاؤنٹ بنانا چاہتے ہیں؟';
+      if (toggleBtn) toggleBtn.textContent = 'نیا اکاؤنٹ رجسٹر کریں (Sign Up)';
     }
   }
 
@@ -313,10 +313,15 @@ class AppState {
   }
 
   renderDashboard() {
-    document.getElementById('fund-balance').textContent = `Rs ${this.data.fundBalance.toLocaleString()}`;
-    document.getElementById('total-received').textContent = `Rs ${this.data.totalReceived.toLocaleString()}`;
-    document.getElementById('total-pending').textContent = `Rs ${this.data.totalPending.toLocaleString()}`;
-    document.getElementById('total-spent').textContent = `Rs ${this.data.totalSpent.toLocaleString()}`;
+    const fundBal = document.getElementById('fund-balance');
+    const totRec = document.getElementById('total-received');
+    const totPen = document.getElementById('total-pending');
+    const totSpe = document.getElementById('total-spent');
+
+    if (fundBal) fundBal.textContent = `Rs ${this.data.fundBalance.toLocaleString()}`;
+    if (totRec) totRec.textContent = `Rs ${this.data.totalReceived.toLocaleString()}`;
+    if (totPen) totPen.textContent = `Rs ${this.data.totalPending.toLocaleString()}`;
+    if (totSpe) totSpe.textContent = `Rs ${this.data.totalSpent.toLocaleString()}`;
 
     const memCount = document.getElementById('members-count');
     if (memCount) memCount.textContent = this.data.members.length;
@@ -427,121 +432,70 @@ class AppState {
   }
 }
 
+// INITIALIZE APP
 document.addEventListener('DOMContentLoaded', () => {
   window.app = new AppState();
+
+  // Load Saved Language
+  const savedLang = localStorage.getItem('selected_lang') || 'ur';
+  const langSelect = document.getElementById("languageSelect");
+  if (langSelect) langSelect.value = savedLang;
+  changeLanguage(savedLang);
 });
-// Modal کھولنا
+
+// MODAL FUNCTIONS
 function openDonateModal() {
-  document.getElementById("donationModal").style.display = "block";
+  const modal = document.getElementById("donationModal");
+  if (modal) modal.style.display = "block";
 }
 
-// Modal بند کرنا
 function closeDonateModal() {
-  document.getElementById("donationModal").style.display = "none";
+  const modal = document.getElementById("donationModal");
+  if (modal) modal.style.display = "none";
 }
 
-// نمبر کاپی کرنے کا فنکشن
 function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(function() {
+  navigator.clipboard.writeText(text).then(() => {
     alert("نمبر کاپی ہو گیا ہے: " + text);
-  }, function(err) {
-    console.error('کپی کرنے میں مسئلہ آیا: ', err);
+  }).catch(err => {
+    console.error('کاپی کرنے میں مسئلہ آیا: ', err);
   });
 }
 
-// اگر صارف باہر کلک کرے تو پاپ اپ بند ہو جائے
-window.onclick = function(event) {
-  var modal = document.getElementById("donationModal");
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-// Settings Menu کھولنا اور بند کرنا
 function toggleSettingsMenu() {
-  var menu = document.getElementById("settingsMenu");
-  if (menu.style.display === "block") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "block";
-  }
+  const menu = document.getElementById("settingsMenu");
+  if (menu) menu.classList.toggle("hidden");
 }
 
-// Dark Mode آن / آف کرنا
 function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
 }
 
-// Language تبدیل کرنے کا بنیادی فنکشن
-function changeLanguage(lang) {
-  if (lang === "en") {
-    document.documentElement.dir = "ltr";
-    document.documentElement.lang = "en";
-    alert("Language changed to English! (Text updates can be customized)");
-  } else {
-    document.documentElement.dir = "rtl";
-    document.documentElement.lang = "ur";
-    alert("زبان اردو میں تبدیل کر دی گئی ہے!");
-  }
-}
-
-// اگر صارف باہر کلک کرے تو سیٹنگز مینو بند ہو جائے
-window.addEventListener('click', function(e) {
-  var btn = document.querySelector('.settings-btn');
-  var menu = document.getElementById('settingsMenu');
-  if (menu && btn && !btn.contains(e.target) && !menu.contains(e.target)) {
-    menu.style.display = 'none';
-  }
-});
-// 1. Dark Mode Toggle
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-}
-
-// 2. Open Profile Modal
 function openProfileModal() {
-  var profModal = document.getElementById("profileModal");
-  if (profModal) {
-    profModal.style.display = "block";
-  } else {
-    alert("پروفائل فارم کا HTML کوڈ موجود نہیں ہے!");
-  }
+  const profModal = document.getElementById("profileModal");
+  if (profModal) profModal.style.display = "block";
 }
 
-// 3. Close Profile Modal
 function closeProfileModal() {
-  var profModal = document.getElementById("profileModal");
+  const profModal = document.getElementById("profileModal");
   if (profModal) profModal.style.display = "none";
 }
 
-// 4. Save Profile Settings
 function saveProfileSettings(event) {
   event.preventDefault();
-  var username = document.getElementById("profUsername")?.value;
-  var password = document.getElementById("profPassword")?.value;
-  var account = document.getElementById("profAccount")?.value;
+  const username = document.getElementById("profUsername")?.value;
+  const password = document.getElementById("profPassword")?.value;
+  const account = document.getElementById("profAccount")?.value;
 
   if (username) localStorage.setItem("user_username", username);
   if (password) localStorage.setItem("user_password", password);
   if (account) localStorage.setItem("user_account", account);
 
-  alert("تبدیلیاں محفوظ ہو گئی ہیں!");
+  alert(document.documentElement.lang === 'en' ? "Profile Updated!" : "تبدیلیاں محفوظ ہو گئی ہیں!");
   closeProfileModal();
 }
 
-// 5. Language Switcher
-function changeLanguage(lang) {
-  if (lang === "en") {
-    document.documentElement.dir = "ltr";
-    document.documentElement.lang = "en";
-  } else {
-    document.documentElement.dir = "rtl";
-    document.documentElement.lang = "ur";
-  }
-}
-// ==========================================
-// NEW FEATURES: LANGUAGE & PROFILE SETTINGS
-// ==========================================
-
+// TRANSLATIONS & LANGUAGE SWITCHER
 const translations = {
   ur: {
     portal_title: "فیملی پورٹل",
@@ -554,6 +508,7 @@ const translations = {
     settings: "سیٹنگز",
     edit_profile: "ایڈیٹ پروفائل",
     dark_mode: "ڈارک موڈ",
+    logout: "لاگ آؤٹ",
     donate: "عطیہ / ڈونیشن"
   },
   en: {
@@ -567,6 +522,7 @@ const translations = {
     settings: "Settings",
     edit_profile: "Edit Profile",
     dark_mode: "Dark Mode",
+    logout: "Logout",
     donate: "Donate"
   }
 };
@@ -588,37 +544,17 @@ function changeLanguage(lang) {
   localStorage.setItem('selected_lang', lang);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const savedLang = localStorage.getItem('selected_lang') || 'ur';
-  const langSelect = document.getElementById("languageSelect");
-  if (langSelect) langSelect.value = savedLang;
-  changeLanguage(savedLang);
+// CLOSE MODALS ON OUTSIDE CLICK
+window.addEventListener('click', (e) => {
+  const donateModal = document.getElementById("donationModal");
+  const profileModal = document.getElementById("profileModal");
+  const settingsMenu = document.getElementById("settingsMenu");
+  const settingsBtn = document.querySelector(".settings-btn");
+
+  if (e.target === donateModal) closeDonateModal();
+  if (e.target === profileModal) closeProfileModal();
+
+  if (settingsMenu && settingsBtn && !settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
+    settingsMenu.classList.add("hidden");
+  }
 });
-
-function openProfileModal() {
-  var pModal = document.getElementById("profileModal");
-  if (pModal) pModal.style.display = "block";
-}
-
-function closeProfileModal() {
-  var pModal = document.getElementById("profileModal");
-  if (pModal) pModal.style.display = "none";
-}
-
-function saveProfileSettings(event) {
-  event.preventDefault();
-  const user = document.getElementById("profUsername").value;
-  const pass = document.getElementById("profPassword").value;
-  const acc = document.getElementById("profAccount").value;
-
-  if (user) localStorage.setItem("user_name", user);
-  if (pass) localStorage.setItem("user_pass", pass);
-  if (acc) localStorage.setItem("user_acc", acc);
-
-  alert(document.documentElement.lang === 'en' ? "Profile Updated!" : "پروفائل معلومات محفوظ ہو گئیں!");
-  closeProfileModal();
-}
-
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-}
